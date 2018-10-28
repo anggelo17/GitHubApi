@@ -1,8 +1,10 @@
-package com.example.luis.githubapi;
+package com.example.luis.githubapi.ui;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+
+import com.example.luis.githubapi.R;
 
 public class BaseActivity extends AppCompatActivity {
 

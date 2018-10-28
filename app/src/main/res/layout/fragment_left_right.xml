@@ -3,10 +3,13 @@
     android:orientation="vertical" android:layout_width="wrap_content"
     android:layout_height="match_parent">
 
+
+
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_right"/>
+        android:layout_height="match_parent"
+        android:maxLength="50000"
+        android:id="@+id/text_diff"/>
 
 
 </LinearLayout>

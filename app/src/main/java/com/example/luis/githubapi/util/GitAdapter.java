@@ -1,6 +1,5 @@
-package com.example.luis.githubapi;
+package com.example.luis.githubapi.util;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.luis.githubapi.R;
+import com.example.luis.githubapi.model.PullRequest;
 
 import java.util.List;
 
@@ -42,7 +44,8 @@ public class GitAdapter extends RecyclerView.Adapter<GitAdapter.MyViewHolder> {
 
          PullRequest d= PRListFiltered.get(position);
         holder.title.setText(d.getTitle());
-        holder.number.setText(d.getNumber());
+        String info= "#" + d.getNumber()+" opened by "+ d.getUser().getLogin();
+        holder.number.setText(info);
 
     }
 
@@ -79,7 +82,7 @@ public class GitAdapter extends RecyclerView.Adapter<GitAdapter.MyViewHolder> {
     }
 
 
-    interface PRListener{
+    public interface PRListener{
 
         void onPRSelected(PullRequest pullRequest);
 

@@ -1,10 +1,12 @@
-package com.example.luis.githubapi;
+package com.example.luis.githubapi.ui;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +14,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.luis.githubapi.R;
+import com.example.luis.githubapi.api.GitApi;
+import com.example.luis.githubapi.model.PullRequest;
+import com.example.luis.githubapi.util.ApiUtils;
+import com.example.luis.githubapi.util.GitAdapter;
+import com.example.luis.githubapi.util.MyDividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +42,8 @@ public class FragmentOne extends Fragment implements GitAdapter.PRListener{
 
     private ICallBack iCallBack;
 
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+
 
 
 
@@ -52,15 +63,27 @@ public class FragmentOne extends Fragment implements GitAdapter.PRListener{
     private void initViews(View view) {
 
         mgitApi = ApiUtils.getSOService();
+
+        mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         mRecyclerView = view.findViewById(R.id.recycler_view);
 
         mgitAdapter = new GitAdapter(getContext(),new ArrayList<PullRequest>(0),this);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mgitAdapter);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
-        mRecyclerView.addItemDecoration(itemDecoration);
+        mRecyclerView.addItemDecoration(new MyDividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL, 36));
+
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                                                     @Override
+                                                     public void onRefresh() {
+                                                         loadData();
+                                                         mSwipeRefreshLayout.setRefreshing(false);
+                                                     }
+                                                 }
+        );
 
         loadData();
 
@@ -92,7 +115,7 @@ public class FragmentOne extends Fragment implements GitAdapter.PRListener{
                     @Override
                     public void onComplete() {
 
-                        Log.d("tag","completed");
+                        Log.d("tag","rv completed");
 
                     }
                 }));

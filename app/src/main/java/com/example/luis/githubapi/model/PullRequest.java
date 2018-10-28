@@ -1,4 +1,4 @@
-package com.example.luis.githubapi;
+package com.example.luis.githubapi.model;
 
 import java.io.Serializable;
 
@@ -9,6 +9,7 @@ public class PullRequest implements Serializable{
     private String url;
     private String diff_url;
 
+    private User user;
 
     public String getNumber() {
         return number;
@@ -41,4 +42,35 @@ public class PullRequest implements Serializable{
     public void setDiff_url(String diff_url) {
         this.diff_url = diff_url;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public class User implements Serializable{
+        private String login;
+        private String id;
+
+
+        public String getLogin() {
+            return login;
+        }
+
+        public void setLogin(String login) {
+            this.login = login;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+    }
+
 }

@@ -2,5 +2,9 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorAccent">#ff6157</color>
+
+    <color name="pr_name">#333333</color>
+    <color name="pr_number">#8c8c8c</color>
 </resources>

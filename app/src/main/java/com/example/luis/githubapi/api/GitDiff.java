@@ -1,4 +1,4 @@
-package com.example.luis.githubapi;
+package com.example.luis.githubapi.api;
 
 import io.reactivex.Observable;
 import okhttp3.Response;

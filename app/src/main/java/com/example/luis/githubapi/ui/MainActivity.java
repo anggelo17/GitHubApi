@@ -1,11 +1,13 @@
-package com.example.luis.githubapi;
+package com.example.luis.githubapi.ui;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+
+import com.example.luis.githubapi.R;
+import com.example.luis.githubapi.model.PullRequest;
 
 public class MainActivity extends BaseActivity implements FragmentOne.ICallBack{
 

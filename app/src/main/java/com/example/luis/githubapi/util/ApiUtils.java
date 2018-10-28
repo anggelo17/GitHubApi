@@ -1,4 +1,7 @@
-package com.example.luis.githubapi;
+package com.example.luis.githubapi.util;
+
+
+import com.example.luis.githubapi.api.*;
 
 public class ApiUtils {
 

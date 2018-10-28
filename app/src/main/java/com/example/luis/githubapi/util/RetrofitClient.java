@@ -1,4 +1,4 @@
-package com.example.luis.githubapi;
+package com.example.luis.githubapi.util;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
