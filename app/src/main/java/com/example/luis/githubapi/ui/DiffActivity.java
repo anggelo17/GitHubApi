@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.luis.githubapi.R;
@@ -12,12 +13,11 @@ import com.example.luis.githubapi.model.PullRequest;
 public class DiffActivity extends BaseActivity {
 
     PullRequest mPullRequest;
-    String LEFT="LEFT";
-    String PR="PR";
+    private static  final String LEFT="LEFT";
+    private static  final String PR="PR";
 
     TextView mTextViewTitle;
     TextView mTextViewNumberAuthor;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,6 +26,8 @@ public class DiffActivity extends BaseActivity {
 
         mTextViewTitle = findViewById(R.id.titleAct);
         mTextViewNumberAuthor = findViewById(R.id.number_author);
+
+
 
          mPullRequest=(PullRequest)getIntent().getSerializableExtra("pull_rq");
 

@@ -44,6 +44,7 @@ public class FragmentOne extends Fragment implements GitAdapter.PRListener{
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
+    private View mProgressBar;
 
 
 
@@ -66,6 +67,7 @@ public class FragmentOne extends Fragment implements GitAdapter.PRListener{
 
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         mRecyclerView = view.findViewById(R.id.recycler_view);
+        mProgressBar = view.findViewById(R.id.loadingRv);
 
         mgitAdapter = new GitAdapter(getContext(),new ArrayList<PullRequest>(0),this);
 
@@ -115,6 +117,7 @@ public class FragmentOne extends Fragment implements GitAdapter.PRListener{
                     @Override
                     public void onComplete() {
 
+                        mProgressBar.setVisibility(View.GONE);
                         Log.d("tag","rv completed");
 
                     }

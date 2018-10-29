@@ -32,13 +32,14 @@ public class LeftRightFragment extends Fragment {
     TextView mTextView;
     GitDiff mGitDiff;
 
-    String LEFT="LEFT";
-    String PR="PR";
+    private static  final String LEFT="LEFT";
+    private static  final String PR="PR";
 
     private CompositeDisposable disposable=new CompositeDisposable();
 
     boolean left;
     PullRequest mPullRequest;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,10 +61,15 @@ public class LeftRightFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_left_right, container, false);
         mTextView = view.findViewById(R.id.text_diff);
-
         mGitDiff = ApiUtils.getDiffService();
-        loadData();
+
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        loadData();
     }
 
     private void loadData() {
@@ -107,6 +113,10 @@ public class LeftRightFragment extends Fragment {
                         char[] chars= processString.toCharArray();
                         Log.d("tag","length"+chars.length);
 
+
+
+
+
                         if (!processString.equals(""))
                             if (chars.length>=3000)
                                 mTextView.setText(Html.fromHtml(processString.substring(0,3000)));
@@ -117,10 +127,13 @@ public class LeftRightFragment extends Fragment {
                             mTextView.setText("Nothing to show.");
 
 
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
+
+
                         mTextView.setText("Sorry, this diff is unavailable. accoding to GitHub Api");
                         Log.e("tag",e.getMessage()+"-----why.....");
 
@@ -128,6 +141,8 @@ public class LeftRightFragment extends Fragment {
 
                     @Override
                     public void onComplete() {
+
+
                         Log.d("tag","complettted text");
 
                     }
